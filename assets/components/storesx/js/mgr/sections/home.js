@@ -1,7 +1,7 @@
 
 Ext.onReady(function() {
     Ext.QuickTips.init();
-    MODx.load({ xtype: 'storesx-page-index'});
+    MODx.load({ xtype: 'storesx-page-index', renderTo: 'storesx'});
 });
 
 /*
@@ -10,9 +10,12 @@ Index page configuration.
 StoresX.page.Index = function(config) {
     config = config || {};
     Ext.applyIf(config,{
-        renderTo: 'storesx',
+        cls: 'container',
         components: [{
-            xtype: 'storesx-panel-header'
+            xtype: 'panel',
+            html: '<h2>'+_('storesx')+'</h2>',
+            border: false,
+            cls: 'modx-page-header'
         },{
             xtype: 'modx-tabs',
             width: '98%',
@@ -24,15 +27,23 @@ StoresX.page.Index = function(config) {
                 bodyStyle: 'padding: 5px 8px 5px 5px;'
             },
             items: [{
-                title: _('storesx.estates'),
+                title: _('storesx.stores'),
                 items: [{
-                    xtype: 'storesx-grid-estates',
+                    //xtype: 'storesx-grid-stores',
                     border: false
                 }]
             },{
-                title: _('storesx.listings'),
+                title: _('storesx.markers'),
+                disabled: true,
                 items: [{
-                    xtype: 'storesx-grid-listings',
+                    //xtype: 'storesx-grid-markers',
+                    border: false
+                }]
+            },{
+                title: _('storesx.categories'),
+                disabled: true,
+                items: [{
+                    //xtype: 'storesx-grid-categories',
                     border: false
                 }]
             }]
@@ -42,22 +53,3 @@ StoresX.page.Index = function(config) {
 };
 Ext.extend(StoresX.page.Index,MODx.Component);
 Ext.reg('storesx-page-index',StoresX.page.Index);
-
-/*
-Index page header configuration.
- */
-StoresX.panel.Header = function(config) {
-    config = config || {};
-    Ext.apply(config,{
-        border: false
-        ,baseCls: 'modx-formpanel'
-        ,items: [{
-            html: '<h2>'+_('storesx')+'</h2>'
-            ,border: false
-            ,cls: 'modx-page-header'
-        }]
-    });
-    StoresX.panel.Header.superclass.constructor.call(this,config);
-};
-Ext.extend(StoresX.panel.Header,MODx.Panel);
-Ext.reg('storesx-panel-header',StoresX.panel.Header);

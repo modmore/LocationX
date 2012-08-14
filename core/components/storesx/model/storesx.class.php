@@ -45,6 +45,7 @@ class StoresX {
             'core_path' => $basePath,
             'model_path' => $basePath.'model/',
             'processors_path' => $basePath.'processors/',
+            'templates_path' => $basePath.'templates/',
             'elements_path' => $basePath.'elements/',
             'assets_path' => $assetsPath,
             'js_url' => $assetsUrl.'js/',
