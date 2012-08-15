@@ -52,6 +52,7 @@ $_lang['storesx.remove.category.confirm'] = 'Are you absolutely sure you want to
 Any locations currently using this Category will be marked as uncategorized.';
 $_lang['storesx.duplicate'] = 'Duplicate [[+what]]';
 $_lang['storesx.filter'] = 'Filter on [[+what]]';
+$_lang['storesx.query'] = 'Search...';
 $_lang['storesx.clear_filter'] = 'Clear Filter';
 
 $_lang['storesx.error.noresults'] = 'Sorry, no [[+what]] found.';

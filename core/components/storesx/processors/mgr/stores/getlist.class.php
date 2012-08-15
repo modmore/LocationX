@@ -19,6 +19,20 @@ class sxStoreGetListProcessor extends modObjectGetListProcessor {
                 'category' => $this->getProperty('category')
             ));
         }
+
+        $query = $this->getProperty('query', '');
+        if (!empty($query)) {
+            $query = "%$query%";
+            $c->where(array(
+                'name:LIKE' => $query,
+                'OR:address1:like' => $query,
+                'OR:address2:like' => $query,
+                'OR:city:like' => $query,
+                'OR:state:like' => $query,
+                'OR:country:like' => $query,
+                'OR:contactperson:like' => $query,
+            ));
+        }
         return $c;
     }
     public function prepareRow(xPDOObject $object) {

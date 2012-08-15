@@ -103,6 +103,29 @@ StoresX.grid.Stores = function(config) {
             handler: this.createStore,
             scope: this
         },'->',{
+            xtype: 'textfield',
+            id: 'storesx-grid-stores-filter-query',
+            emptyText: _('storesx.query'),
+            listeners: {
+                change: {fn: function(field, value) {
+                    this.getStore().baseParams['query'] = value;
+                    this.getBottomToolbar().changePage(1);
+                }, scope: this},
+                render: { fn: function(cmp) {
+                    new Ext.KeyMap(cmp.getEl(), {
+                        key: Ext.EventObject.ENTER,
+                        fn: function() {
+                            this.fireEvent('change',this);
+                            // lose & gain focus again so clicking outside field doesn't refresh grid again.
+                            this.blur();
+                            this.focus();
+                            return true;
+                        },
+                        scope: cmp
+                    });
+                },scope: this}
+            }
+        },'-',{
             xtype: 'storesx-combo-categories',
             id: 'storesx-grid-stores-filter-categories',
             includeUncategorized: false,
@@ -117,7 +140,9 @@ StoresX.grid.Stores = function(config) {
             text: _('storesx.clear_filter'),
             handler: function() {
                 Ext.getCmp('storesx-grid-stores-filter-categories').setValue();
+                Ext.getCmp('storesx-grid-stores-filter-query').setValue();
                 this.getStore().baseParams['category'] = 0;
+                this.getStore().baseParams['query'] = '';
                 this.getBottomToolbar().changePage(1);
             },
             scope: this
