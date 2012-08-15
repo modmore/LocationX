@@ -13,7 +13,7 @@ $manager = $modx->getManager();
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget('HTML');
 $objects = array(
-    'object','object2'
+    'sxStore','sxMarker','sxCategory'
 );
 
 foreach ($objects as $obj) {

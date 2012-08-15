@@ -52,6 +52,11 @@ class StoresX {
             'css_url' => $assetsUrl.'css/',
             'assets_url' => $assetsUrl,
             'connector_url' => $assetsUrl.'connector.php',
+
+            'cmp_zoom' => $modx->getOption('storesx.cmp_zoom', null, 14),
+            'cmp_default_zoom' => $modx->getOption('storex.cmp_default_zoom', null, 16),
+            'cmp_default_lat' => $modx->getOption('storex.cmp_default_lat', null, '53.006759'),
+            'cmp_default_long' => $modx->getOption('storex.cmp_default_long', null, '7.192037'),
         ),$config);
 
         $this->modx->addPackage('storesx',$this->config['model_path']);

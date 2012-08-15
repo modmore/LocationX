@@ -9,9 +9,9 @@ class StoresXHomeManagerController extends StoresXManagerController {
     }
 
     public function loadCustomCssJs() {
-        //$this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/panel.home.js');
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.stores.js');
         //$this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.menu.js');
-        //$this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.menu.js');
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.stores.js');
         //$this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/formpanel.menu.js');
         $this->addLastJavascript($this->storesx->config['js_url'].'mgr/sections/home.js');
     }

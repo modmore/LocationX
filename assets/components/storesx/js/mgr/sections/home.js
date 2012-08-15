@@ -29,7 +29,7 @@ StoresX.page.Index = function(config) {
             items: [{
                 title: _('storesx.stores'),
                 items: [{
-                    //xtype: 'storesx-grid-stores',
+                    xtype: 'storesx-grid-stores',
                     border: false
                 }]
             },{

@@ -4,6 +4,7 @@
         <field key="name" dbtype="varchar" precision="150" phptype="string" null="false" default="Unnamed Store" />
         <field key="link" dbtype="varchar" precision="150" phptype="string" null="true" />
         <field key="category" dbtype="int" precision="10" phptype="integer" default="0" />
+        <field key="rank" dbtype="int" precision="10" phptype="integer" default="0" />
 
         <!-- Address related fields -->
         <field key="address1" dbtype="varchar" precision="150" phptype="string" null="true" />
@@ -15,8 +16,16 @@
         <field key="latitude" dbtype="varchar" precision="25" phptype="string" null="true" />
         <field key="longitude" dbtype="varchar" precision="25" phptype="string" null="true" />
 
+        <!-- Contact related fields -->
+        <field key="contactperson" dbtype="varchar" precision="100" phptype="string" null="true" />
+        <field key="phone" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="fax" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="email" dbtype="varchar" precision="100" phptype="string" null="true" />
+
         <!-- Flags -->
         <field key="active" dbtype="tinyint" precision="1" phptype="boolean" default="0" />
+        <field key="createdon" dbtype="int" precision="20" phptype="int" default="0" />
+        <field key="updatedon" dbtype="int" precision="20" phptype="int" default="0" />
 
         <!-- Google Maps stuff -->
         <field key="gmap_marker" dbtype="int" precision="10" phptype="integer" default="0" />

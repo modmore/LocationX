@@ -31,6 +31,7 @@ $xpdo_meta_map['sxStore']= array (
     'name' => 'Unnamed Store',
     'link' => NULL,
     'category' => 0,
+    'rank' => 0,
     'address1' => NULL,
     'address2' => NULL,
     'city' => NULL,
@@ -39,7 +40,13 @@ $xpdo_meta_map['sxStore']= array (
     'country' => NULL,
     'latitude' => NULL,
     'longitude' => NULL,
+    'contactperson' => NULL,
+    'phone' => NULL,
+    'fax' => NULL,
+    'email' => NULL,
     'active' => 0,
+    'createdon' => 0,
+    'updatedon' => 0,
     'gmap_marker' => 0,
   ),
   'fieldMeta' => 
@@ -60,6 +67,13 @@ $xpdo_meta_map['sxStore']= array (
       'null' => true,
     ),
     'category' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '10',
+      'phptype' => 'integer',
+      'default' => 0,
+    ),
+    'rank' => 
     array (
       'dbtype' => 'int',
       'precision' => '10',
@@ -122,11 +136,53 @@ $xpdo_meta_map['sxStore']= array (
       'phptype' => 'string',
       'null' => true,
     ),
+    'contactperson' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '100',
+      'phptype' => 'string',
+      'null' => true,
+    ),
+    'phone' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '25',
+      'phptype' => 'string',
+      'null' => true,
+    ),
+    'fax' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '25',
+      'phptype' => 'string',
+      'null' => true,
+    ),
+    'email' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '100',
+      'phptype' => 'string',
+      'null' => true,
+    ),
     'active' => 
     array (
       'dbtype' => 'tinyint',
       'precision' => '1',
       'phptype' => 'boolean',
+      'default' => 0,
+    ),
+    'createdon' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '20',
+      'phptype' => 'int',
+      'default' => 0,
+    ),
+    'updatedon' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '20',
+      'phptype' => 'int',
       'default' => 0,
     ),
     'gmap_marker' => 
