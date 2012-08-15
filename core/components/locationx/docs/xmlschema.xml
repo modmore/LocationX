@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- http://www.youtube.com/watch?v=37TH0QdrfE4 -->
+<StoreX xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<lxStore>
+		<category>Platinum Clients</category>
+		<name>Sharon G. Brown</name>
+		<address1>978 Modoc Alley</address1>
+		<city>Rupert</city>
+		<state>ID</state>
+		<zip>83350</zip>
+		<phone>208-260-3663</phone>
+	</lxStore>
+	<lxStore>
+		<category>Gold Clients</category>
+		<name>John A. Ahumada</name>
+		<address1>4633 New Creek Road</address1>
+		<city>Fort Wayne</city>
+		<state>IN</state>
+		<zip>46818</zip>
+		<phone>260-239-4827</phone>
+	</lxStore>
+</StoreX>

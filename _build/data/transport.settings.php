@@ -18,12 +18,12 @@ foreach ($s as $key => $value) {
     if (count($parts) == 1) { $area = 'Default'; }
     else { $area = $parts[0]; }
     
-    $settings['storesx.'.$key] = $modx->newObject('modSystemSetting');
-    $settings['storesx.'.$key]->set('key', 'storesx.'.$key);
-    $settings['storesx.'.$key]->fromArray(array(
+    $settings['locationx.'.$key] = $modx->newObject('modSystemSetting');
+    $settings['locationx.'.$key]->set('key', 'locationx.'.$key);
+    $settings['locationx.'.$key]->fromArray(array(
         'value' => $value,
         'xtype' => $type,
-        'namespace' => 'storesx',
+        'namespace' => 'locationx',
         'area' => $area
     ));
 }

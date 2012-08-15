@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="locationx" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    <object class="lxStore" table="locationx_store" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="150" phptype="string" null="false" default="Unnamed Store" />
+        <field key="link" dbtype="varchar" precision="150" phptype="string" null="true" />
+        <field key="category" dbtype="int" precision="10" phptype="integer" default="0" />
+        <field key="rank" dbtype="int" precision="10" phptype="integer" default="0" />
+
+        <!-- Address related fields -->
+        <field key="address1" dbtype="varchar" precision="150" phptype="string" null="true" />
+        <field key="address2" dbtype="varchar" precision="150" phptype="string" null="true" />
+        <field key="city" dbtype="varchar" precision="75" phptype="string" null="true" />
+        <field key="state" dbtype="varchar" precision="50" phptype="string" null="true" />
+        <field key="zip" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="country" dbtype="varchar" precision="50" phptype="string" null="true" />
+        <field key="latitude" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="longitude" dbtype="varchar" precision="25" phptype="string" null="true" />
+
+        <!-- Contact related fields -->
+        <field key="contactperson" dbtype="varchar" precision="100" phptype="string" null="true" />
+        <field key="phone" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="fax" dbtype="varchar" precision="25" phptype="string" null="true" />
+        <field key="email" dbtype="varchar" precision="100" phptype="string" null="true" />
+
+        <!-- Flags -->
+        <field key="active" dbtype="tinyint" precision="1" phptype="boolean" default="0" />
+        <field key="createdon" dbtype="int" precision="20" phptype="int" default="0" />
+        <field key="updatedon" dbtype="int" precision="20" phptype="int" default="0" />
+
+        <!-- Google Maps stuff -->
+        <field key="gmap_marker" dbtype="int" precision="10" phptype="integer" default="0" />
+
+        <aggregate alias="Marker" class="lxMarker" local="gmap_marker" foreign="id" owner="foreign" cardinality="one" />
+        <aggregate alias="Category" class="lxCategory" local="category" foreign="id" owner="foreign" cardinality="one" />
+    </object>
+
+    <object class="lxMarker" table="locationx_marker" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="150" phptype="string" null="false" default="Unnamed Marker" />
+        <field key="image" dbtype="varchar" precision="150" phptype="string" null="false" default="" />
+        <field key="shadow" dbtype="varchar" precision="150" phptype="string" null="false" default="" />
+        <!-- for usage with sprites -->
+        <field key="size" dbtype="varchar" precision="20" phptype="string" null="true" default="" />
+        <field key="origin" dbtype="varchar" precision="20" phptype="string" null="true" default="" />
+
+        <!-- doesn't show a shadow -->
+        <field key="flat" dbtype="tinyint" precision="1" phptype="boolean" default="0" />
+    </object>
+
+    <object class="lxCategory" table="locationx_category" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="150" phptype="string" null="false" default="Unnamed Category" />
+
+        <field key="visible" dbtype="tinyint" precision="1" phptype="boolean" default="1" />
+        <aggregate alias="Stores" class="lxStore" local="id" foreign="category" owner="local" cardinality="many" />
+    </object>
+</model>
+

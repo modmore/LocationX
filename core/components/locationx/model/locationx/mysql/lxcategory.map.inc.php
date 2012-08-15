@@ -21,27 +21,43 @@
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
-
-
-if ($object->xpdo) {
-    $modx =& $object->xpdo;
-
-    $modelPath = $modx->getOption('locationx.core_path',null,$modx->getOption('core_path').'components/locationx/').'model/';
-    $modx->addPackage('locationx',$modelPath);
-
-    $manager = $modx->getManager();
-
-    $objects = array(
-        'lxStore','lxMarker','lxCategory'
-    );
-
-    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
-        case xPDOTransport::ACTION_UPGRADE:
-        case xPDOTransport::ACTION_INSTALL:
-            foreach ($objects as $obj) {
-                $manager->createObjectContainer($obj);
-            }
-        break;
-    }
-}
-return true;
+$xpdo_meta_map['lxCategory']= array (
+  'package' => 'locationx',
+  'version' => '1.1',
+  'table' => 'locationx_category',
+  'extends' => 'xPDOSimpleObject',
+  'fields' => 
+  array (
+    'name' => 'Unnamed Category',
+    'visible' => 1,
+  ),
+  'fieldMeta' => 
+  array (
+    'name' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '150',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => 'Unnamed Category',
+    ),
+    'visible' => 
+    array (
+      'dbtype' => 'tinyint',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'default' => 1,
+    ),
+  ),
+  'aggregates' => 
+  array (
+    'Stores' => 
+    array (
+      'class' => 'lxStore',
+      'local' => 'id',
+      'foreign' => 'category',
+      'owner' => 'local',
+      'cardinality' => 'many',
+    ),
+  ),
+);

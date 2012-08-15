@@ -20,7 +20,7 @@ $tstart = $mtime;
 set_time_limit(0);
 
 /* define package */
-define('PKG_NAME','StoresX');
+define('PKG_NAME','LocationX');
 define('PKG_NAME_LOWER',strtolower(PKG_NAME));
 define('PKG_VERSION','0.1.0');
 define('PKG_RELEASE','dev1');

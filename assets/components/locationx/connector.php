@@ -4,8 +4,7 @@
  *
  * Copyright 2011 by Mark Hamstra <hello@markhamstra.com>
  *
- * This file is part of LocationX, a real estate property listings component
- * for MODX Revolution.
+ * This file is part of LocationX.
  *
  * LocationX is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
@@ -20,28 +19,22 @@
  * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
+ * @package LocationX
 */
 
+require_once dirname(dirname(dirname(dirname(__FILE__)))).'/config.core.php';
+require_once MODX_CORE_PATH.'config/'.MODX_CONFIG_KEY.'.inc.php';
+require_once MODX_CONNECTORS_PATH.'index.php';
 
-if ($object->xpdo) {
-    $modx =& $object->xpdo;
+$corePath = $modx->getOption('locationx.core_path',null,$modx->getOption('core_path').'components/locationx/');
+require_once $corePath.'model/locationx.class.php';
+$modx->locationx = new LocationX($modx);
+$modx->locationx->initialize('mgr');
 
-    $modelPath = $modx->getOption('locationx.core_path',null,$modx->getOption('core_path').'components/locationx/').'model/';
-    $modx->addPackage('locationx',$modelPath);
-
-    $manager = $modx->getManager();
-
-    $objects = array(
-        'lxStore','lxMarker','lxCategory'
-    );
-
-    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
-        case xPDOTransport::ACTION_UPGRADE:
-        case xPDOTransport::ACTION_INSTALL:
-            foreach ($objects as $obj) {
-                $manager->createObjectContainer($obj);
-            }
-        break;
-    }
-}
-return true;
+/* handle request */
+$path = $modx->getOption('processorsPath',$modx->locationx->config,$corePath.'processors/');
+$modx->request->handleRequest(array(
+    'processors_path' => $path,
+    'location' => '',
+));
+?>

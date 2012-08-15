@@ -1,22 +1,22 @@
 <?php
 /**
- * StoresX
+ * LocationX
  *
  * Copyright 2011 by Mark Hamstra <hello@markhamstra.com>
  *
- * This file is part of StoresX.
+ * This file is part of LocationX.
  *
- * StoresX is free software; you can redistribute it and/or modify it under
+ * LocationX is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
  *
- * StoresX is distributed in the hope that it will be useful, but WITHOUT ANY
+ * LocationX is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * StoresX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
@@ -37,34 +37,34 @@ $modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 $root = dirname(dirname(__FILE__)).'/';
 $sources = array(
     'root' => $root,
-    'core' => $root.'core/components/storesx/',
-    'model' => $root.'core/components/storesx/model/',
-    'assets' => $root.'assets/components/storesx/',
-    'schema' => $root.'core/components/storesx/model/schema/',
+    'core' => $root.'core/components/locationx/',
+    'model' => $root.'core/components/locationx/model/',
+    'assets' => $root.'assets/components/locationx/',
+    'schema' => $root.'core/components/locationx/model/schema/',
 );
 $manager= $modx->getManager();
 $generator= $manager->getGenerator();
 $generator->classTemplate= <<<EOD
 <?php
 /**
- * StoresX
+ * LocationX
  *
  * Copyright 2011 by Mark Hamstra <hello@markhamstra.com>
  *
- * This file is part of StoresX, a real estate property listings component
+ * This file is part of LocationX, a real estate property listings component
  * for MODX Revolution.
  *
- * StoresX is free software; you can redistribute it and/or modify it under
+ * LocationX is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
  *
- * StoresX is distributed in the hope that it will be useful, but WITHOUT ANY
+ * LocationX is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * StoresX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
@@ -74,24 +74,24 @@ EOD;
     $generator->platformTemplate= <<<EOD
 <?php
 /**
- * StoresX
+ * LocationX
  *
  * Copyright 2011 by Mark Hamstra <hello@markhamstra.com>
  *
- * This file is part of StoresX, a real estate property listings component
+ * This file is part of LocationX, a real estate property listings component
  * for MODX Revolution.
  *
- * StoresX is free software; you can redistribute it and/or modify it under
+ * LocationX is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
  *
- * StoresX is distributed in the hope that it will be useful, but WITHOUT ANY
+ * LocationX is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * StoresX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
@@ -102,30 +102,30 @@ EOD;
     $generator->mapHeader= <<<EOD
 <?php
 /**
- * StoresX
+ * LocationX
  *
  * Copyright 2011 by Mark Hamstra <hello@markhamstra.com>
  *
- * This file is part of StoresX, a real estate property listings component
+ * This file is part of LocationX, a real estate property listings component
  * for MODX Revolution.
  *
- * StoresX is free software; you can redistribute it and/or modify it under
+ * LocationX is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option) any later
  * version.
  *
- * StoresX is distributed in the hope that it will be useful, but WITHOUT ANY
+ * LocationX is distributed in the hope that it will be useful, but WITHOUT ANY
  * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
  * A PARTICULAR PURPOSE. See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * StoresX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
+ * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
 EOD;
 
-$generator->parseSchema($sources['schema'].'storesx.mysql.schema.xml', $sources['model']);
+$generator->parseSchema($sources['schema'].'locationx.mysql.schema.xml', $sources['model']);
 
 $mtime= microtime();
 $mtime= explode(" ", $mtime);

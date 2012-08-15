@@ -21,27 +21,6 @@
  * Suite 330, Boston, MA 02111-1307 USA
  *
 */
-
-
-if ($object->xpdo) {
-    $modx =& $object->xpdo;
-
-    $modelPath = $modx->getOption('locationx.core_path',null,$modx->getOption('core_path').'components/locationx/').'model/';
-    $modx->addPackage('locationx',$modelPath);
-
-    $manager = $modx->getManager();
-
-    $objects = array(
-        'lxStore','lxMarker','lxCategory'
-    );
-
-    switch ($options[xPDOTransport::PACKAGE_ACTION]) {
-        case xPDOTransport::ACTION_UPGRADE:
-        case xPDOTransport::ACTION_INSTALL:
-            foreach ($objects as $obj) {
-                $manager->createObjectContainer($obj);
-            }
-        break;
-    }
-}
-return true;
+require_once (strtr(realpath(dirname(dirname(__FILE__))), '\\', '/') . '/lxcategory.class.php');
+class lxCategory_mysql extends lxCategory {}
+?>

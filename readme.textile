@@ -1,4 +1,4 @@
-h1. StoresX
+h1. LocationX
 
 Manage, list and map locations in MODX Revolution.
 
