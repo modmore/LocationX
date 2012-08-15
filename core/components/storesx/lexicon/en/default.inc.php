@@ -32,6 +32,11 @@ $_lang['storesx.contactperson'] = 'Contact Person';
 $_lang['storesx.phone'] = 'Phone';
 $_lang['storesx.fax'] = 'Fax';
 $_lang['storesx.email'] = 'Email';
+$_lang['storesx.image'] = 'Image';
+$_lang['storesx.shadow'] = 'Shadow Image';
+$_lang['storesx.size'] = 'Size';
+$_lang['storesx.origin'] = 'Origin';
+$_lang['storesx.flat'] = 'Flat';
 
 $_lang['storesx.create'] = 'Create New [[+what]]';
 $_lang['storesx.activate'] = 'Activate [[+what]]';
@@ -40,6 +45,8 @@ $_lang['storesx.update'] = 'Update [[+what]]';
 $_lang['storesx.remove'] = 'Remove [[+what]]';
 $_lang['storesx.remove.store.confirm'] = 'Are you absolutely, 100%, sure you want to remove this Store? There is no way to get it back other than recreating if you click YES below. <br /><br />
 If you only want to hide it from your website, you may want to deactive the Store instead: this will keep it safe, but wont show it to your visitors.';
+$_lang['storesx.remove.marker.confirm'] = 'Are you absolutely, 100%, sure you want to remove this Marker? There is no way to get it back other than recreating if you click YES below. <br /><br />
+Any locations currently using this marker will be set to the Google Default marker.';
 $_lang['storesx.duplicate'] = 'Duplicate [[+what]]';
 $_lang['storesx.filter'] = 'Filter on [[+what]]';
 $_lang['storesx.clear_filter'] = 'Clear Filter';

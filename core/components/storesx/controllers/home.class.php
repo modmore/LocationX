@@ -10,10 +10,13 @@ class StoresXHomeManagerController extends StoresXManagerController {
 
     public function loadCustomCssJs() {
         $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.stores.js');
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.stores.js');
         $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/combo.markers.js');
         $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/combo.categories.js');
-        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.stores.js');
-        //$this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/formpanel.menu.js');
+
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.markers.js');
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.markers.js');
+
         $this->addLastJavascript($this->storesx->config['js_url'].'mgr/sections/home.js');
     }
 

@@ -34,9 +34,8 @@ StoresX.page.Index = function(config) {
                 }]
             },{
                 title: _('storesx.markers'),
-                disabled: true,
                 items: [{
-                    //xtype: 'storesx-grid-markers',
+                    xtype: 'storesx-grid-markers',
                     border: false
                 }]
             },{
