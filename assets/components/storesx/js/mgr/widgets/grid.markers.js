@@ -136,11 +136,6 @@ Ext.extend(StoresX.grid.Markers,MODx.grid.Grid,{
                 },scope: this}
             }
         });
-    },
-
-    renderImage: function(v) {
-        if (v != '') return '<img src="' + v + '" width="30" height="30" />';
-        return '';
     }
 });
 Ext.reg('storesx-grid-markers',StoresX.grid.Markers);

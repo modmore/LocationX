@@ -40,9 +40,8 @@ StoresX.page.Index = function(config) {
                 }]
             },{
                 title: _('storesx.categories'),
-                disabled: true,
                 items: [{
-                    //xtype: 'storesx-grid-categories',
+                    xtype: 'storesx-grid-categories',
                     border: false
                 }]
             }]

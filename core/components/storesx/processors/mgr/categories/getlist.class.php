@@ -9,7 +9,7 @@ class sxCategoryGetListProcessor extends modObjectGetListProcessor {
         $data = parent::getData();
 
         /* When requested for a combo box w/ uncategorized, offer the default category. */
-        if ($this->getProperty('combo') && $this->getProperty('include_uncategorizedd')) {
+        if (($this->getProperty('id') == -1) || ($this->getProperty('combo') && $this->getProperty('include_uncategorizedd'))) {
             /* @var sxCategory $empty */
             /* Create transient object to represent default */
             $empty = $this->modx->newObject('sxCategory');

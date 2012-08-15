@@ -1,10 +1,10 @@
 <?php
 
-$_lang['storesx'] = 'Stores';
+$_lang['storesx'] = 'StoresX';
 $_lang['storesx.desc'] = 'StoresX manages, lists and maps your locations.';
 
-$_lang['storesx.store'] = 'Store';
-$_lang['storesx.stores'] = 'Stores';
+$_lang['storesx.store'] = 'Location';
+$_lang['storesx.stores'] = 'Locations';
 $_lang['storesx.marker'] = 'Map Marker';
 $_lang['storesx.markers'] = 'Map Markers';
 $_lang['storesx.category'] = 'Category';
@@ -37,16 +37,19 @@ $_lang['storesx.shadow'] = 'Shadow Image';
 $_lang['storesx.size'] = 'Size';
 $_lang['storesx.origin'] = 'Origin';
 $_lang['storesx.flat'] = 'Flat';
+$_lang['storesx.visible'] = 'Visible';
 
 $_lang['storesx.create'] = 'Create New [[+what]]';
 $_lang['storesx.activate'] = 'Activate [[+what]]';
 $_lang['storesx.deactivate'] = 'Deactivate [[+what]]';
 $_lang['storesx.update'] = 'Update [[+what]]';
 $_lang['storesx.remove'] = 'Remove [[+what]]';
-$_lang['storesx.remove.store.confirm'] = 'Are you absolutely, 100%, sure you want to remove this Store? There is no way to get it back other than recreating if you click YES below. <br /><br />
+$_lang['storesx.remove.store.confirm'] = 'Are you absolutely sure you want to remove this Store? There is no way to get it back other than recreating if you click YES below. <br /><br />
 If you only want to hide it from your website, you may want to deactive the Store instead: this will keep it safe, but wont show it to your visitors.';
-$_lang['storesx.remove.marker.confirm'] = 'Are you absolutely, 100%, sure you want to remove this Marker? There is no way to get it back other than recreating if you click YES below. <br /><br />
-Any locations currently using this marker will be set to the Google Default marker.';
+$_lang['storesx.remove.marker.confirm'] = 'Are you absolutely sure you want to remove this Marker? There is no way to get it back other than recreating if you click YES below. <br /><br />
+Any locations currently using this Marker will be set to the Google Default marker.';
+$_lang['storesx.remove.category.confirm'] = 'Are you absolutely sure you want to remove this Category? There is no way to get it back other than recreating if you click YES below. <br /><br />
+Any locations currently using this Category will be marked as uncategorized.';
 $_lang['storesx.duplicate'] = 'Duplicate [[+what]]';
 $_lang['storesx.filter'] = 'Filter on [[+what]]';
 $_lang['storesx.clear_filter'] = 'Clear Filter';

@@ -17,6 +17,9 @@ class StoresXHomeManagerController extends StoresXManagerController {
         $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.markers.js');
         $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.markers.js');
 
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/grid.categories.js');
+        $this->addJavascript($this->storesx->config['js_url'].'mgr/widgets/window.categories.js');
+
         $this->addLastJavascript($this->storesx->config['js_url'].'mgr/sections/home.js');
     }
 
