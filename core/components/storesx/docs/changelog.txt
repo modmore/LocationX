@@ -1,3 +1,4 @@
+- Add Import tool to allow imports from XML.
 - Add search field to Locations grid.
 
 [ 0.1.0-dev | 2012-08-15 ]

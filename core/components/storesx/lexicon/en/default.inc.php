@@ -38,8 +38,15 @@ $_lang['storesx.size'] = 'Size';
 $_lang['storesx.origin'] = 'Origin';
 $_lang['storesx.flat'] = 'Flat';
 $_lang['storesx.visible'] = 'Visible';
+$_lang['storesx.xmlfile'] = 'File (.xml)';
+$_lang['storesx.xmlfile.upload_fail'] = 'No file, empty file or upload error occurred.';
+$_lang['storesx.overwrite_stores'] = 'Update Stores if the ID is in use';
+$_lang['storesx.auto_create_categories'] = 'Create Categories that don\'t exist.';
+$_lang['storesx.import.get_latlong'] = 'If not set, get Latitude &amp; Longitude from Google';
+$_lang['storesx.import.get_latlong.disabled_quote'] = 'This option has been disabled as while it is functional, Google doesn\'t like bulk requests and throws fits on query limits after the first 10 or so.';
 
 $_lang['storesx.create'] = 'Create New [[+what]]';
+$_lang['storesx.import'] = 'Import';
 $_lang['storesx.activate'] = 'Activate [[+what]]';
 $_lang['storesx.deactivate'] = 'Deactivate [[+what]]';
 $_lang['storesx.update'] = 'Update [[+what]]';
@@ -61,3 +68,12 @@ $_lang['storesx.err_ae_name'] = 'Name already exists.';
 
 $_lang['storesx.default_marker'] = 'Google Default';
 $_lang['storesx.uncategorized'] = 'Uncategorized';
+
+$_lang['storesx.import.initiated'] = 'Import initiated, uploading file...';
+$_lang['storesx.import.file_received'] = 'File received. Amount of data: [[+size]]';
+$_lang['storesx.import.parsing_xml'] = 'Parsing XML...';
+$_lang['storesx.import.missing_simplexml'] = '<a href="http://php.net/manual/en/book.simplexml.php">SimpleXML</a> is not available on the server. Unable to continue.';
+$_lang['storesx.import.error_parsing_xml'] = 'Error parsing XML, file might be damaged or uses invalid syntax.';
+$_lang['storesx.import.error_xml_misses_sxstore'] = 'XML file seems to be empty: does not contain sxStore objects.';
+$_lang['storesx.import.error.lat_long'] = 'Unable to get latitude/longitude for [[+name]]: [[+message]]';
+$_lang['storesx.import.done'] = 'Done.';

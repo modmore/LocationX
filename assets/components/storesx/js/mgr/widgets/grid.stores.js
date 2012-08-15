@@ -102,6 +102,10 @@ StoresX.grid.Stores = function(config) {
             text: _('storesx.create', {what: _('storesx.store')}),
             handler: this.createStore,
             scope: this
+        },'-',{
+            text: _('storesx.import'),
+            handler: this.importStores,
+            scope: this
         },'->',{
             xtype: 'textfield',
             id: 'storesx-grid-stores-filter-query',
@@ -189,6 +193,13 @@ Ext.extend(StoresX.grid.Stores,MODx.grid.Grid,{
         var win = MODx.load({
             xtype: 'storesx-window-store',
             mode: 'create'
+        });
+        win.show();
+    },
+
+    importStores: function() {
+        var win = MODx.load({
+            xtype: 'storesx-window-import'
         });
         win.show();
     },

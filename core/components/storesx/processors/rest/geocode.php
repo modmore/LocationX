@@ -28,7 +28,8 @@ if (!is_array($result)) {
 }
 
 if ($result['status'] != 'OK') {
-    return $modx->error->failure('Invalid response or no data available from Google Geocoding Service');
+    $modx->log(modX::LOG_LEVEL_ERROR,'Error geocoding ' . $address . ': ' . print_r($result, true));
+    return $modx->error->failure('Google Geocoding Service error: ' . $result['status']);
 }
 
 $result = $result['results'][0];
