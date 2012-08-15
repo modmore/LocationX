@@ -41,7 +41,12 @@ $_lang['storesx.remove'] = 'Remove [[+what]]';
 $_lang['storesx.remove.store.confirm'] = 'Are you absolutely, 100%, sure you want to remove this Store? There is no way to get it back other than recreating if you click YES below. <br /><br />
 If you only want to hide it from your website, you may want to deactive the Store instead: this will keep it safe, but wont show it to your visitors.';
 $_lang['storesx.duplicate'] = 'Duplicate [[+what]]';
+$_lang['storesx.filter'] = 'Filter on [[+what]]';
+$_lang['storesx.clear_filter'] = 'Clear Filter';
 
 $_lang['storesx.error.noresults'] = 'Sorry, no [[+what]] found.';
 $_lang['storesx.err_ns_name'] = 'Name not specified.';
 $_lang['storesx.err_ae_name'] = 'Name already exists.';
+
+$_lang['storesx.default_marker'] = 'Google Default';
+$_lang['storesx.uncategorized'] = 'Uncategorized';

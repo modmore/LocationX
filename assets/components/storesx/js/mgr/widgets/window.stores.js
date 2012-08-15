@@ -56,10 +56,9 @@ StoresX.window.Store = function(config) {
                         allowBlank: true,
                         anchor: '100%'
                     },{
-                        xtype: 'textfield', //@todo
+                        xtype: 'storesx-combo-categories',
                         fieldLabel: _('storesx.category'),
                         name: 'category',
-                        maxLength: 150,
                         allowBlank: true,
                         anchor: '100%'
                     },{
@@ -191,12 +190,12 @@ StoresX.window.Store = function(config) {
                         items: [{
                             columnWidth:.5,
                             items: [{
-                                xtype: 'textfield', // @todo
+                                xtype: 'storesx-combo-markers',
                                 fieldLabel: _('storesx.gmap_marker'),
                                 name: 'gmap_marker',
                                 allowBlank: false,
                                 anchor: '100%',
-                                value: 0
+                                value: 'default'
                             },{
                                 xtype: 'textfield',
                                 fieldLabel: _('storesx.latitude'),

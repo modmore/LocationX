@@ -1,15 +1,11 @@
-+++++++++++++++++++++++++++++++++++
-++                               ++
-++   StoresX                   ++
-++   Developer:  Your Name       ++
-++   License:    GPL GNU v2      ++
-++                               ++
-+++++++++++++++++++++++++++++++++++
+StoresX
+@author     Mark Hamstra <hello@markhamstra.com>
+@license    GPL GNU v2
 
-
-StoresX is a wicked addon that will do something for you, real easy!
-
+StoresX manages, lists and maps your locations.
 
 Documentation: 		http://rtfm.modx.com/display/ADDON/StoresX
-Bugs & Features: 	https://github.com/DevName/StoresX/issues
-Commercial Support:	storesx@developer.com
+Bugs & Features: 	https://github.com/Mark-H/StoresX/issues
+
+## Marker Images
+- http://www.mapchannels.com/Markers.aspx

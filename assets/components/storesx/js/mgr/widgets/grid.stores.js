@@ -102,6 +102,25 @@ StoresX.grid.Stores = function(config) {
             text: _('storesx.create', {what: _('storesx.store')}),
             handler: this.createStore,
             scope: this
+        },'->',{
+            xtype: 'storesx-combo-categories',
+            id: 'storesx-grid-stores-filter-categories',
+            includeUncategorized: false,
+            emptyText: _('storesx.filter',{what: _('storesx.category')}),
+            listeners: {
+                select: {fn: function(combo, record) {
+                    this.getStore().baseParams['category'] = record.id;
+                    this.getBottomToolbar().changePage(1);
+                }, scope: this}
+            }
+        },'-',{
+            text: _('storesx.clear_filter'),
+            handler: function() {
+                Ext.getCmp('storesx-grid-stores-filter-categories').setValue();
+                this.getStore().baseParams['category'] = 0;
+                this.getBottomToolbar().changePage(1);
+            },
+            scope: this
         }]
     });
     StoresX.grid.Stores.superclass.constructor.call(this,config);

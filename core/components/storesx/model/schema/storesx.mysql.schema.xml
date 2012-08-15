@@ -36,10 +36,11 @@
 
     <object class="sxMarker" table="storesx_marker" extends="xPDOSimpleObject">
         <field key="name" dbtype="varchar" precision="150" phptype="string" null="false" default="Unnamed Marker" />
-        <field key="url" dbtype="varchar" precision="150" phptype="string" null="false" default="" />
+        <field key="image" dbtype="varchar" precision="150" phptype="string" null="false" default="" />
+        <field key="shadow" dbtype="varchar" precision="150" phptype="string" null="false" default="" />
         <!-- for usage with sprites -->
-        <field key="size" dbtype="varchar" precision="20" phptype="string" null="false" default="" />
-        <field key="origin" dbtype="varchar" precision="20" phptype="string" null="false" default="" />
+        <field key="size" dbtype="varchar" precision="20" phptype="string" null="true" default="" />
+        <field key="origin" dbtype="varchar" precision="20" phptype="string" null="true" default="" />
 
         <!-- doesn't show a shadow -->
         <field key="flat" dbtype="tinyint" precision="1" phptype="boolean" default="0" />

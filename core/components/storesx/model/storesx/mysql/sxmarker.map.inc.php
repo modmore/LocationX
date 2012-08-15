@@ -29,7 +29,8 @@ $xpdo_meta_map['sxMarker']= array (
   'fields' => 
   array (
     'name' => 'Unnamed Marker',
-    'url' => '',
+    'image' => '',
+    'shadow' => '',
     'size' => '',
     'origin' => '',
     'flat' => 0,
@@ -44,7 +45,15 @@ $xpdo_meta_map['sxMarker']= array (
       'null' => false,
       'default' => 'Unnamed Marker',
     ),
-    'url' => 
+    'image' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '150',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'shadow' => 
     array (
       'dbtype' => 'varchar',
       'precision' => '150',
@@ -57,7 +66,7 @@ $xpdo_meta_map['sxMarker']= array (
       'dbtype' => 'varchar',
       'precision' => '20',
       'phptype' => 'string',
-      'null' => false,
+      'null' => true,
       'default' => '',
     ),
     'origin' => 
@@ -65,7 +74,7 @@ $xpdo_meta_map['sxMarker']= array (
       'dbtype' => 'varchar',
       'precision' => '20',
       'phptype' => 'string',
-      'null' => false,
+      'null' => true,
       'default' => '',
     ),
     'flat' => 
