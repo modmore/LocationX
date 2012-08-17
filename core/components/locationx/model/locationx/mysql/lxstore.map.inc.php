@@ -124,15 +124,15 @@ $xpdo_meta_map['lxStore']= array (
     ),
     'latitude' => 
     array (
-      'dbtype' => 'varchar',
-      'precision' => '25',
+      'dbtype' => 'decimal',
+      'precision' => '25,10',
       'phptype' => 'string',
       'null' => true,
     ),
     'longitude' => 
     array (
-      'dbtype' => 'varchar',
-      'precision' => '25',
+      'dbtype' => 'decimal',
+      'precision' => '25,10',
       'phptype' => 'string',
       'null' => true,
     ),
@@ -191,6 +191,41 @@ $xpdo_meta_map['lxStore']= array (
       'precision' => '10',
       'phptype' => 'integer',
       'default' => 0,
+    ),
+  ),
+  'indexes' => 
+  array (
+    'latitude' => 
+    array (
+      'alias' => 'latitude',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'latitude' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
+    ),
+    'longitude' => 
+    array (
+      'alias' => 'longitude',
+      'primary' => false,
+      'unique' => false,
+      'type' => 'BTREE',
+      'columns' => 
+      array (
+        'longitude' => 
+        array (
+          'length' => '',
+          'collation' => 'A',
+          'null' => false,
+        ),
+      ),
     ),
   ),
   'aggregates' => 

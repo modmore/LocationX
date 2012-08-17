@@ -29,16 +29,14 @@ if (!is_array($result)) {
 
 if ($result['status'] != 'OK') {
     $modx->log(modX::LOG_LEVEL_ERROR,'Error geocoding ' . $address . ': ' . print_r($result, true));
-    return $modx->error->failure('Google Geocoding Service error: ' . $result['status']);
+    return $modx->error->failure('Geocoding error: ' . $result['status']);
 }
-
 $result = $result['results'][0];
 
 if (isset($result['geometry']) && isset($result['geometry']['location'])) {
-    $out = array();
-    $out['lat'] = $result['geometry']['location']['lat'];
-    $out['lng'] = $result['geometry']['location']['lng'];
-    return $modx->error->success('', $out);
+    $result['lat'] = $result['geometry']['location']['lat'];
+    $result['lng'] = $result['geometry']['location']['lng'];
+    return $modx->error->success('', $result);
 } else {
     return $modx->error->failure('No results from the Google Geocoding service.');
 }

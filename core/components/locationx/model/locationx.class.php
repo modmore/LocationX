@@ -20,12 +20,14 @@
  * LocationX; if not, write to the Free Software Foundation, Inc., 59 Temple Place,
  * Suite 330, Boston, MA 02111-1307 USA
  *
-*/
+ */
 
 class LocationX {
     public $modx;
     public $config = array();
+    public $properties = array();
     private $chunks = array();
+    public $cacheOptions = array(xPDO::OPT_CACHE_KEY => 'locationx');
 
     /**
      * Main LocationX constructor for setting up configuration etc.
@@ -57,6 +59,8 @@ class LocationX {
             'cmp_default_zoom' => $modx->getOption('storex.cmp_default_zoom', null, 16),
             'cmp_default_lat' => $modx->getOption('storex.cmp_default_lat', null, '53.006759'),
             'cmp_default_long' => $modx->getOption('storex.cmp_default_long', null, '7.192037'),
+
+            'zipCacheLifetime' => $modx->getOption('storex.cache.zip.lifetime', null, 0),
         ),$config);
 
         $this->modx->addPackage('locationx',$this->config['model_path']);
@@ -128,6 +132,48 @@ class LocationX {
         return $chunk;
     }
 
+    public function getProperty($key, $default = '') {
+        if (in_array($key, $this->properties['allowUrlOverrideProperties']) && $this->properties['allowUrlOverride']) {
+            if (isset($_GET[$key]) && !empty($_GET[$key])) return $_GET[$key];
+        }
+        if (isset($this->properties[$key]) && !empty($this->properties[$key])) return $this->properties[$key];
+        return $default;
+    }
+
+    public function getProperties() {
+        return $this->properties;
+    }
+
+    public function setProperties(array $properties = array()) {
+        $this->properties = $properties;
+        $this->properties['allowUrlOverrideProperties'] = array_map('trim',explode(',',$this->properties['allowUrlOverrideProperties']));
+        $this->properties['category'] = explode(',',$this->properties['category']);
+    }
+
+    public function geoCode($geoCodeSearch) {
+        $cacheKey = 'geocoding/'.md5($geoCodeSearch);
+        $data = $this->modx->cacheManager->get($cacheKey,$this->cacheOptions);
+        if (true || empty($data)) {
+            /* @var modProcessorResponse $result */
+            $result = $this->modx->runProcessor('rest/geocode',array(
+                'address' => $geoCodeSearch
+            ),array(
+                'processors_path' => $this->config['processors_path']
+            ));
+
+            if ($result->isError()) {
+                $this->modx->log(modX::LOG_LEVEL_ERROR,$this->modx->lexicon('locationx.import.error.lat_long',array(
+                    'name' => $geoCodeSearch,
+                    'message' => $result->getMessage(),
+                )));
+                $data = array('error' => $result->getMessage());
+            } else {
+                $data = $result->getObject();
+            }
+            $this->modx->cacheManager->set($cacheKey, $data, $this->config['zipCacheLifetime'], $this->cacheOptions);
+        }
+        return $data;
+    }
+
 }
 
-?>
