@@ -84,8 +84,7 @@ if (!empty($searchGeo)) {
             'AND:longitude:>=' => $viewport['southwest']['lng'],
         ));
 
-        if ($locationx->getProperty('debug', false)) {
-            echo '<img src="http://maps.googleapis.com/maps/api/staticmap?sensor=false&center=' .
+        $placeholders['bounding_box'] = 'http://maps.googleapis.com/maps/api/staticmap?sensor=false&center=' .
             str_replace(',','.',$geoCode['lat']) . ',' . str_replace(',','.',$geoCode['lng']) .
             '&size=325x325&maptype=roadmap&markers=' .
                 str_replace(',','.',$geoCode['lat']) . ',' . str_replace(',','.',$geoCode['lng']) .
@@ -99,10 +98,8 @@ if (!empty($searchGeo)) {
                 str_replace(',','.',$viewport['northeast']['lat']) . ',' . str_replace(',','.',$viewport['northeast']['lng']) . '|' .
                 str_replace(',','.',$viewport['northeast']['lat']) . ',' . str_replace(',','.',$viewport['southwest']['lng']) . '|' .
                 str_replace(',','.',$viewport['southwest']['lat']) . ',' . str_replace(',','.',$viewport['southwest']['lng']) . '|' .
-                str_replace(',','.',$viewport['southwest']['lat']) . ',' . str_replace(',','.',$viewport['northeast']['lng']) .
+                str_replace(',','.',$viewport['southwest']['lat']) . ',' . str_replace(',','.',$viewport['northeast']['lng']);
 
-                '" />';
-        }
     } else {
         $placeholders['errors'][] = $geoCode['error'];
     }
