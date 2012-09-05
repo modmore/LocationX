@@ -10,12 +10,21 @@
         lx.addMarkers(id, lx.data[id].markers);
 
         var bounds = new google.maps.LatLngBounds();
-        for (var key in lx.data[id].markerObjs) {
-            if (lx.data[id].markerObjs.hasOwnProperty(key)) {
-                bounds.extend(lx.data[id].markerObjs[key].getPosition());
+        /*if (lx.data[id].markers.length > 1) {
+            for (var key in lx.data[id].markerObjs) {
+                if (lx.data[id].markerObjs.hasOwnProperty(key)) {
+                    bounds.extend(lx.data[id].markerObjs[key].getPosition());
+                }
             }
-        }
+        } else { */
+            if (lx.data[id].mapOptions.viewport.northeast) {
+                bounds.extend(new google.maps.LatLng(lx.data[id].mapOptions.viewport.northeast.lat,lx.data[id].mapOptions.viewport.northeast.lng));
+                bounds.extend(new google.maps.LatLng(lx.data[id].mapOptions.viewport.southwest.lat,lx.data[id].mapOptions.viewport.southwest.lng));
+            }
+        //}
         lx.data[id].map.fitBounds(bounds);
+        /* Ensure we're not zoomed in too much with only one result */
+        setTimeout(function() { if (lx.data[id].map.getZoom() > 17) lx.data[id].map.setZoom(17); }, 500);
     };
     lx.addMarkers = function (id, data) {
         for (var i = 0; i < data.length; i++) {

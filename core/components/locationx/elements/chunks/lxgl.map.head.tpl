@@ -6,7 +6,8 @@
         mapOptions: {
             center: new google.maps.LatLng([[+center_lat]], [[+center_lng]]),
             zoom: 10,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            viewport: [[+viewport]]
         },
         map: null
     };
@@ -17,8 +18,8 @@
         if (typeof jQuery != 'undefined') {
             $.ajax({
                 data: {
-                    northeast: bounds.getNorthEast().toString(),
-                    southwest: bounds.getSouthWest().toString(),
+                    northeast: bounds.getNorthEast().toUrlValue(),
+                    southwest: bounds.getSouthWest().toUrlValue(),
                     exclude: lx.data['[[+id]]'].markerIds,
                     [[+id]]Ajax: true
                 },

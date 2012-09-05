@@ -4,9 +4,10 @@
     `:default=`
         <h3><a href="[[+link]]" title="[[+name]]">[[+name]]</a></h3>
     `]]
-    [[+latitude:notempty=`<div class="lxgl-result-map">
+    [[- [[+latitude:notempty=`<div class="lxgl-result-map">
         <img alt="[[+name]]" src="http://maps.googleapis.com/maps/api/staticmap?sensor=false&maptype=roadmap&center=[[+latitude]],[[+longitude]]&markers=[[+latitude]],[[+longitude]]&size=200x200" />
     </div>`]]
+    ]]
 
     <div class="lxgl-result-details">
         [[+category_name:notempty=`

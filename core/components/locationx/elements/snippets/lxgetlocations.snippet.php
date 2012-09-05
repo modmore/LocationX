@@ -80,16 +80,28 @@ $searchCountry = $locationx->getProperty('searchCountry','');
 if (!empty($searchCountry)) $query->where(array('country:LIKE' => "%$searchCountry%"));
 
 $searchGeo = $locationx->getProperty('searchGeo');
+if (isset($_GET[$locationx->getProperty('id').'Ajax'])) {
+    $northeast = explode(',', $_GET['northeast']);
+    $southwest = explode(',', $_GET['southwest']);
+    $query->where(array(
+        'latitude:<=' => $northeast[0],
+        'AND:latitude:>=' => $southwest[0], //$viewport['southwest']['lat'],
+    ));
+    $query->where(array(
+        'longitude:<=' => $northeast[1], //$viewport['northeast']['lng'],
+        'AND:longitude:>=' => $southwest[1], //$viewport['southwest']['lng'],
+    ));
+    $query->limit(0,0);
 
-if (!empty($searchGeo)) {
+} elseif (!empty($searchGeo)) {
     $geoCode = $locationx->geoCode($searchGeo);
     $placeholders['geosearch'] = 1;
     if (!isset($geoCode['error'])) {
         $placeholders['geosearch.term'] = (isset($geoCode['formatted_address'])) ? $geoCode['formatted_address'] : $searchGeo;
         $viewport = $geoCode['geometry']['viewport'];
 
-        if (is_numeric($locationx->getProperty('searchRadius','')) && $locationx->getProperty('searchRadius','') > 0) {
-            $viewportCalculated = $locationx->getFlatBoundingBox($locationx->getProperty('searchRadius',''), $geoCode['lat'], $geoCode['lng']);
+        if ($locationx->getProperty('calculateBoundingBox',false) && is_numeric($locationx->getProperty('searchRadius')) && $locationx->getProperty('searchRadius') > 0) {
+            $viewportCalculated = $locationx->getFlatBoundingBox($locationx->getProperty('searchRadius'), $geoCode['lat'], $geoCode['lng']);
             if (is_array($viewportCalculated)) {
                 $viewport = array(
                     'northeast' => array(
@@ -128,12 +140,15 @@ if (!empty($searchGeo)) {
                 str_replace(',','.',$viewport['northeast']['lat']) . ',' . str_replace(',','.',$viewport['southwest']['lng']) . '|' .
                 str_replace(',','.',$viewport['southwest']['lat']) . ',' . str_replace(',','.',$viewport['southwest']['lng']) . '|' .
                 str_replace(',','.',$viewport['southwest']['lat']) . ',' . str_replace(',','.',$viewport['northeast']['lng']);
-
+        $query->limit(0,0);
     } else {
         $placeholders['errors'][] = $geoCode['error'];
     }
 } else {
     $placeholders['geosearch'] = 0;
+
+    /* Apply limits only if we're not geosearching... good or bad idea, not sure yet. */
+    $query->limit($locationx->getProperty('limit'), $locationx->getProperty('offset'));
 }
 
 /* Apply sorting */
@@ -150,8 +165,6 @@ foreach ($sort as $field => $dir) {
 $total = $modx->getCount('lxStore', $query);
 $modx->setPlaceholder($locationx->getProperty('totalVar','total'), $total);
 
-/* Apply limits */
-$query->limit($locationx->getProperty('limit'), $locationx->getProperty('offset'));
 
 if ($locationx->getProperty('debug', false)) {
     $query->prepare();
@@ -201,6 +214,7 @@ if ($total < 1) {
     $placeholders['output'] = implode($locationx->getProperty('resultSeparator',"\n"), $placeholders['output']);
 }
 
+/* When the request came through AJAX (identified through an url property), dump JSON for markers only. */
 if (isset($_GET[$locationx->getProperty('id').'Ajax'])) {
     if (!empty($markers)) {
         die ($modx->toJSON($markers));
@@ -209,6 +223,7 @@ if (isset($_GET[$locationx->getProperty('id').'Ajax'])) {
     }
 }
 
+/* Register CSS and JS stuff if needed */
 if ($locationx->getProperty('registerCss', true)) {
     $modx->regClientCSS($locationx->config['css_url'] . 'frontend.css');
 }
@@ -229,7 +244,7 @@ if ($locationx->getProperty('buildGmap', true)) {
         'id' => $locationx->getProperty('id'),
         'width' => $locationx->getProperty('mapWidth'),
         'height' => $locationx->getProperty('mapHeight'),
-        ));
+    ));
 
     /* Get the base head, only to be included once per page */
     $placeholders['gmaps']['head_base'] = $locationx->getChunk($locationx->getProperty('tplMapHeadBase'),array(
@@ -237,7 +252,8 @@ if ($locationx->getProperty('buildGmap', true)) {
         'data' => $modx->toJSON($markers),
         'key' => $locationx->getProperty('apiKey',''),
         'connector_url' => $locationx->config['assets_url'] . 'connector.php',
-        ));
+    ));
+
     if (!$locationx->baseRegistered) {
         $modx->regClientStartupHTMLBlock($placeholders['gmaps']['head_base']);
         $locationx->baseRegistered = true;
@@ -248,8 +264,9 @@ if ($locationx->getProperty('buildGmap', true)) {
         'id' => $locationx->getProperty('id'),
         'data' => $modx->toJSON($markers),
         'center_lat' => (isset($geoCode)) ? $geoCode['lat'] : $locationx->getProperty('mapDefaultLat'),
-        'center_lng' => (isset($geoCode)) ? $geoCode['lng'] : $locationx->getProperty('mapDefaultLng')
-        ));
+        'center_lng' => (isset($geoCode)) ? $geoCode['lng'] : $locationx->getProperty('mapDefaultLng'),
+        'viewport' => (isset($viewport)) ? $modx->toJSON($viewport) : '{}',
+    ));
     $modx->regClientHTMLBlock($placeholders['gmaps']['head']);
 
 }

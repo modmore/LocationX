@@ -19,6 +19,7 @@ return array(
     'includeCategory' => true,
 
     'search' => '',
+    'calculateBoundingBox' => false,
     'searchRadius' => 20,
     'searchRadiusUnit' => 'miles',
     'searchGeo' => '',
@@ -46,8 +47,8 @@ return array(
     'registerJqueryHead' => false,
     'registerJqueryFooter' => true,
 
-    'mapDefaultLat' => '',
-    'mapDefaultLng' => '',
+    'mapDefaultLat' => '0.00',
+    'mapDefaultLng' => '0.00',
     'mapType' => 'ROADMAP',
 
     'mapHeight' => '400px',
