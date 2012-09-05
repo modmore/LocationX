@@ -7,10 +7,19 @@
     lx.initMap = function (id) {
         if (!lx.data[id]) return false;
         lx.data[id].map = new google.maps.Map(document.getElementById(id), lx.data[id].mapOptions);
+        lx.addMarkers(id, lx.data[id].markers);
 
         var bounds = new google.maps.LatLngBounds();
-        for (var i = 0; i < lx.data[id].markers.length; i++) {
-            var marker = lx.data[id].markers[i];
+        for (var key in lx.data[id].markerObjs) {
+            if (lx.data[id].markerObjs.hasOwnProperty(key)) {
+                bounds.extend(lx.data[id].markerObjs[key].getPosition());
+            }
+        }
+        lx.data[id].map.fitBounds(bounds);
+    };
+    lx.addMarkers = function (id, data) {
+        for (var i = 0; i < data.length; i++) {
+            var marker = data[i];
 
             for (var locationId in marker.items) {
                 if (marker.items.hasOwnProperty(locationId)) {
@@ -23,16 +32,9 @@
                     };
                     if (marker.image != '') locationMarker.icon = marker.image;
                     lx.data[id].markerObjs.push(new google.maps.Marker(locationMarker));
-                    bounds.extend(locationMarker.position);
+                    lx.data[id].markerIds.push(locationId);
                }
             }
         }
-
-        lx.data[id].map.fitBounds(bounds);
-        /*markers.push(new google.maps.Marker({
-          position: neighborhoods[iterator],
-          map: lx.data[id].map,
-          draggable: false
-        }));*/
-    }
+    };
 </script>

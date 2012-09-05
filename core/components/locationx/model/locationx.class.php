@@ -207,8 +207,14 @@ class LocationX {
     }
 
     public function filter ($string) {
-        $string = str_replace(array('[',']'),'', $string);
-        $string = strip_tags($string);
+        if (is_array($string)) {
+            foreach ($string as $key=>$value) {
+                $string[$this->filter($key)] = $this->filter($value);
+            }
+        } else {
+            $string = str_replace(array('[',']'),'', $string);
+            $string = strip_tags($string);
+        }
         return $string;
     }
 

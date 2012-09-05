@@ -63,6 +63,15 @@ if (!empty($search)) {
     ));
 }
 
+/* Exclude IDs if set */
+$exclude = $locationx->getProperty('exclude','');
+if (!is_array($exclude)) $exclude = explode(',', $exclude);
+if (!empty($exclude)) {
+    $query->where(array(
+        'id:NOT IN' => $exclude,
+    ));
+}
+
 $searchCity = $locationx->getProperty('searchCity','');
 if (!empty($searchCity)) $query->where(array('city:LIKE' => "%$searchCity%"));
 $searchState = $locationx->getProperty('searchState','');
@@ -192,6 +201,13 @@ if ($total < 1) {
     $placeholders['output'] = implode($locationx->getProperty('resultSeparator',"\n"), $placeholders['output']);
 }
 
+if (isset($_GET[$locationx->getProperty('id').'Ajax'])) {
+    if (!empty($markers)) {
+        die ($modx->toJSON($markers));
+    } else {
+        die('[]');
+    }
+}
 
 if ($locationx->getProperty('registerCss', true)) {
     $modx->regClientCSS($locationx->config['css_url'] . 'frontend.css');
@@ -220,6 +236,7 @@ if ($locationx->getProperty('buildGmap', true)) {
         'id' => $locationx->getProperty('id'),
         'data' => $modx->toJSON($markers),
         'key' => $locationx->getProperty('apiKey',''),
+        'connector_url' => $locationx->config['assets_url'] . 'connector.php',
         ));
     if (!$locationx->baseRegistered) {
         $modx->regClientStartupHTMLBlock($placeholders['gmaps']['head_base']);

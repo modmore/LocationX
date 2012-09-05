@@ -5,7 +5,7 @@ return array(
     'placeholderPrefix' => 'locationx',
 
     'allowUrlOverride' => false,
-    'allowUrlOverrideProperties' => 'category, searchName, searchGeo, searchCity, searchState, searchCountry, searchRadius',
+    'allowUrlOverrideProperties' => 'exclude, category, searchName, searchGeo, searchCity, searchState, searchCountry, searchRadius',
 
     'category' => '',
     'includeInactive' => false,
@@ -13,6 +13,7 @@ return array(
     'includeMappedOnly' => false,
     'includeLinkedOnly' => false,
     'where' => '',
+    'exclude' => '',
 
     'includeMarker' => true,
     'includeCategory' => true,
