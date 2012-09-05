@@ -1,10 +1,11 @@
 <?php
 return array(
     'debug' => false,
-    'placeholderPrefix' => 'locationx.',
+    'apiKey' => '',
+    'placeholderPrefix' => 'locationx',
 
     'allowUrlOverride' => false,
-    'allowUrlOverrideProperties' => 'category, searchName, searchGeo, searchCity, searchState, searchCountry, searchDistance',
+    'allowUrlOverrideProperties' => 'category, searchName, searchGeo, searchCity, searchState, searchCountry, searchRadius',
 
     'category' => '',
     'includeInactive' => false,
@@ -13,10 +14,12 @@ return array(
     'includeLinkedOnly' => false,
     'where' => '',
 
-    'includeMarker' => false,
+    'includeMarker' => true,
     'includeCategory' => true,
 
     'search' => '',
+    'searchRadius' => 20,
+    'searchRadiusUnit' => 'miles',
     'searchGeo' => '',
     'searchCity' => '',
     'searchState' => '',
@@ -31,8 +34,23 @@ return array(
     'sort' => '{"rank":"asc"}',
 
     /* Templating */
+    'id' => 'lxgl',
     'noResults' => 'Sorry, no matching Locations found.',
-    'tplResult' => 'lxgl.result'
+    'tplResult' => 'lxgl.result',
+    'tplMapMarkup' => 'lxgl.map.markup',
+    'tplMapHeadBase' => 'lxgl.map.head_base',
+    'tplMapHead' => 'lxgl.map.head',
+
+    'registerCss' => true,
+    'registerJqueryHead' => false,
+    'registerJqueryFooter' => true,
+
+    'mapDefaultLat' => '',
+    'mapDefaultLng' => '',
+    'mapType' => 'ROADMAP',
+
+    'mapHeight' => '400px',
+    'mapWidth' => '400px;',
 
 
 );

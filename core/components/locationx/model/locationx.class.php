@@ -28,6 +28,7 @@ class LocationX {
     public $properties = array();
     private $chunks = array();
     public $cacheOptions = array(xPDO::OPT_CACHE_KEY => 'locationx');
+    public $baseRegistered = false;
 
     /**
      * Main LocationX constructor for setting up configuration etc.
@@ -133,9 +134,6 @@ class LocationX {
     }
 
     public function getProperty($key, $default = '') {
-        if (in_array($key, $this->properties['allowUrlOverrideProperties']) && $this->properties['allowUrlOverride']) {
-            if (isset($_GET[$key]) && !empty($_GET[$key])) return $_GET[$key];
-        }
         if (isset($this->properties[$key]) && !empty($this->properties[$key])) return $this->properties[$key];
         return $default;
     }
@@ -147,6 +145,13 @@ class LocationX {
     public function setProperties(array $properties = array()) {
         $this->properties = $properties;
         $this->properties['allowUrlOverrideProperties'] = array_map('trim',explode(',',$this->properties['allowUrlOverrideProperties']));
+
+        if ($this->properties['allowUrlOverride']) {
+            foreach ($this->properties['allowUrlOverrideProperties'] as $key) {
+                if (isset($_GET[$key]) && !empty($_GET[$key])) $this->properties[$key] = $this->filter($_GET[$key]);
+                if (isset($_POST[$key]) && !empty($_POST[$key])) $this->properties[$key] = $this->filter($_POST[$key]);
+            }
+        }
         $this->properties['category'] = explode(',',$this->properties['category']);
     }
 
@@ -173,6 +178,38 @@ class LocationX {
             $this->modx->cacheManager->set($cacheKey, $data, $this->config['zipCacheLifetime'], $this->cacheOptions);
         }
         return $data;
+    }
+
+    /**
+    * Returns two lat's, two lng's for a bounding box
+    *
+    * @author http://blog.rrwd.nl/2010/08/05/alternatief-voor-getboundingbox-voor-berekenen-afstanden-met-geo-coordinaten/
+    * @access public
+    * @param float $distance Distance in KM or MILES depending on searchRadiusUnit property
+    * @param float $lat_degrees latitude center
+    * @param float $lon_degrees longitude center
+    * @return array
+    */
+    public function getFlatBoundingBox($distance, $lat_degrees, $lon_degrees) {
+         $radius = (strtolower($this->getProperty('searchRadiusUnit','km')) != 'km') ? 3963.1 : 6371.0;
+
+         $rlat = $radius * sin(deg2rad(90 - $lat_degrees));
+        
+         $dphi_lon = asin($distance / $rlat);
+         $dphi_lat = asin($distance / $radius);
+        
+         $lat1 = $lat_degrees - rad2deg($dphi_lat);
+         $lat2 = $lat_degrees + rad2deg($dphi_lat);
+         $lon1 = $lon_degrees - rad2deg($dphi_lon);
+         $lon2 = $lon_degrees + rad2deg($dphi_lon);
+        
+         return array($lat1, $lat2, $lon1, $lon2);
+    }
+
+    public function filter ($string) {
+        $string = str_replace(array('[',']'),'', $string);
+        $string = strip_tags($string);
+        return $string;
     }
 
 }
